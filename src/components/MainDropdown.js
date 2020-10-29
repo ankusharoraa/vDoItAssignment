@@ -42,6 +42,18 @@ class MainDropdown extends Component {
                 })
             }
         }
+        else if (event.target.id === 'juniorAge') {
+            if (event.target.value !== '') {
+                this.setState({
+                    juniorAge: event.target.value,
+                })
+            }
+            else {
+                this.setState({
+                    juniorAge: '',
+                })
+            }
+        }
         else if (event.target.id === 'adultAge') {
             if (event.target.value !== '') {
                 this.setState({
@@ -73,24 +85,10 @@ class MainDropdown extends Component {
         }
     }
 
-    thirdChange = (event) => {
-        if (event.target.value !== '') {
-            this.setState({
-                juniorAge: event.target.value,
-                isJuniorSelected: true
-            })
-        }
-        else {
-            this.setState({
-                juniorAge: '',
-            })
-        }
-    }
-
     showDetails = () => {
         alert(
             (`
-           Age Bracket : ${this.state.ageBrack}
+           Age Bracket : ${this.state.ageBrack.toUpperCase()}
            Gender : ${this.state.genderSelect}
            Age : ${this.state.adultAge}
            Skills : ${this.state.skills}
@@ -100,15 +98,27 @@ class MainDropdown extends Component {
         )
         event.preventDefault();
     }
+    showDetailsJunior = () => {
+        alert(
+            (`
+            Age Bracket : ${(this.state.ageBrack).toUpperCase()}
+            Age : ${this.state.juniorAge}
+            Skills : ${this.state.skills}
+            Team Name : ${this.state.teamName}
+
+           `)
+        )
+        event.preventDefault();
+    }
     render() {
 
         return (
             <>
-                <div className="container-fluid mt-5">
-                    <h2 className = "h2 text-center mb-5">Registration Form</h2>
+                <div className="container">
+                    <h2 className="h2 mb-5">Registration Form</h2>
                     <form onSubmit={this.showDetails}>
                         <div class="form-group row">
-                            <label className="col-sm-2 col-form-label">Age Bracket</label>
+                            <label className="col-sm-2 col-form-label h1">Age Bracket</label>
                             <select id="ageBrac" className="col-sm-5 form-control" name="ageBracket" onChange={this.firstChange}>
                                 <option value=""></option>
                                 <option value="adult">Adult</option>
@@ -121,9 +131,12 @@ class MainDropdown extends Component {
                         {this.state.ageBrack === 'adult' ?
                             <AdultDropdown secondChange={this.secondChange} skills={this.state.skills} adultAge={this.state.adultAge} showDetailsAdult={this.showDetailsAdult} teamName={this.state.teamName} ageBrack={this.state.ageBrack} genderSelect={this.state.genderSelect} /> :
                             this.state.ageBrack === 'junior' ?
-                                <JuniorDropdown thirdChange={this.thirdChange} /> : <></>}
-                                <div class="form-group row">
-                        {this.state.teamName !== '' ? <button type = "submit" className="offset-sm-2 form-control col-sm-5 btn btn-primary">Submit</button> : <></>}
+                                <JuniorDropdown secondChange={this.secondChange} juniorAge={this.state.juniorAge} skills={this.state.skills} teamName={this.state.teamName} /> : <></>}
+                        <div class="form-group row">
+                            {(this.state.teamName !== '' && this.state.ageBrack === 'adult') ?
+                                <button type="submit" className="offset-sm-2 form-control col-sm-5 btn btn-primary">Submit</button> :
+                                (this.state.teamName !== '' && this.state.ageBrack === 'junior') ?
+                                    <button type="button" onClick={this.showDetailsJunior} className="offset-sm-2 form-control col-sm-5 btn btn-primary">Submit</button> : <></>}
                         </div>
                     </form>
                 </div>

@@ -49,7 +49,7 @@ const AdultDropdown = (props) => {
         return (
             <>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label">Age</label>
+                    <label className="col-sm-2 col-form-label h1">Age</label>
                     <select id="adultAge" className="col-sm-5 form-control" name="age" value={adultAge} onChange={props.secondChange}>
                         {dropVal1}
                     </select>
@@ -62,7 +62,7 @@ const AdultDropdown = (props) => {
         return (
             <>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label">Skills</label>
+                    <label className="col-sm-2 col-form-label h1">Skills</label>
                     <select id="skills" className="col-sm-5 form-control" name="skills" value={skills} onChange={props.secondChange} multiple>
                         {dropVal2}
                     </select>
@@ -75,7 +75,7 @@ const AdultDropdown = (props) => {
         return (
             <>
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label">Team Name</label>
+                    <label className="col-sm-2 col-form-label h1">Team Name</label>
                     <input id="teamName" className="col-sm-5 form-control" type="text" value={teamName} onChange={props.secondChange} autoFocus />
                 </div>
             </>
@@ -86,7 +86,7 @@ const AdultDropdown = (props) => {
         <>
            
                 <div className="form-group row">
-                    <label className="col-sm-2 col-form-label">Gender</label>
+                    <label className="col-sm-2 col-form-label h1">Gender</label>
                     <select id="genderSelect" className="col-sm-5 form-control" name="gender" onChange={props.secondChange}>
                         {dropVal}
                     </select>

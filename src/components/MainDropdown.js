@@ -74,7 +74,7 @@ class MainDropdown extends Component {
 
             if (event.target.value !== '') {
                 this.setState({
-                    teamName: event.target.value,
+                    teamName: (event.target.value).trimStart(),
                 })
             }
             else {
